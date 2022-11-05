@@ -48,6 +48,7 @@ const resData = {
 const jsonContent = JSON.stringify(resData);
 
 //This sends the response back to the client
+  res.header('Content-Type','application/json')
   res.end(jsonContent)
 })
 
