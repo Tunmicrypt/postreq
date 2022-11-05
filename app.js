@@ -7,7 +7,7 @@ const app = express();
 
 //This is to receive the json data from the post Request
 app.use(express.json({type: "application/json"}));
-app.use(cors);
+app.use(cors());
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html")
 })
