@@ -1,11 +1,13 @@
 const express = require("express");
 const https = require("https");
+const cors = require("cors");
+
 
 const app = express();
 
 //This is to receive the json data from the post Request
 app.use(express.json({type: "application/json"}));
-
+app.use(cors);
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html")
 })
