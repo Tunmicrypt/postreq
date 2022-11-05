@@ -13,7 +13,12 @@ app.get("/", (req, res) => {
 })
 
 app.post("/", (req, res) => {
-  console.log(req.body);
+  if(!req.body){
+    return res.json({
+      slackUsername: "Tunmicrypt",
+      error: "All arqameters must be met"
+    })
+  }
 const x = req.body.x;
 const y = req.body.y;
 const operator = req.body.operation_type
@@ -39,19 +44,13 @@ if(Number.isInteger(x) === true && Number.isInteger(y) === true){
 } else console.log("The numbers are not integers");
 
 
-//This contains the response data that will be sent after the request has been processed
-const resData = {
-  slackusername: "Tunmicrypt",
-  result: result,
-  operation_type: operator
-}
-
-//This turns the response data into JSO
-const jsonContent = JSON.stringify(resData);
 
 //This sends the response back to the client
-  res.header('Content-Type','application/json')
-  res.end(jsonContent)
+return  res.header('Content-Type','application/json').status(200).json({
+  slackUsername: "Tunmicrypt",
+  result: result,
+  operation_type: operator
+})
 })
 
 //This shows that the server is running
